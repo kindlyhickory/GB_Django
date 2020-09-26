@@ -1,0 +1,4 @@
+{% for item in contact_links %}
+    <a href="{% url item.href %}" class = "{{item.name}}">
+    </a>
+{% endfor %}
