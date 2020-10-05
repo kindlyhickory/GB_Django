@@ -28,6 +28,7 @@ urlpatterns = [
     path('contact/twitter', mainapp.contact, name='contacts_twitter'),
     path('contact/google_plus', mainapp.contact, name='contacts_google_plus'),
     path('contact/pinterest', mainapp.contact, name='contacts_pinterest'),
+    path('basket/', include('basketapp.urls', namespace='basket')),
     path('admin/', admin.site.urls),
 ]
 
