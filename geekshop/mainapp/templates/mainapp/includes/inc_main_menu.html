@@ -22,7 +22,23 @@
         контакты
         </a>
     </li>
-
+    <li>
+        <a href="{% url "auth:edit" %}">{% if user.first_name %}
+            {{ user.first_name }}
+        {% else %}
+            Пользователь
+        {% endif %}
+        </a>
+    </li>
+    {% if user.is_authenticated %}
+        <a href="{% url "auth:logout" %}">
+            Выход
+        </a>
+    {% else %}
+        <a href="{% url 'auth:login' %}">
+            Вход
+        </a>
+    {% endif %}
 </ul>
 <a href="#" class="search"></a>
 <a href="#" class="basket"></a>

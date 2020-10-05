@@ -16,30 +16,38 @@ contact_links = [
     {'href': 'contacts_google_plus', 'name': 'social3'},
     {'href': 'contacts_pinterest', 'name': 'social4'}
 ]
-menu_links = ProductCategory.objects.all()
-
-products = Product.objects.all()[:3]
-contacts = Contacts.objects.all()
-
-content = {
-    'contact_links': contact_links,
-    'menu_links': menu_links,
-    'products': products,
-    'contacts': contacts
-}
 
 
 def main(request):
+    prods = Product.objects.all()[:3]
+    content = {
+        'contact_links': contact_links,
+        'products': prods,
+    }
     return render(request, 'mainapp/index.html', content)
 
 
 # Create your views here.
 
 def products(request, category_pk=None):
+    menu_links = ProductCategory.objects.all()
+    prods = Product.objects.all()[:3]
+
+    content = {
+        'contact_links': contact_links,
+        'menu_links': menu_links,
+        'products': prods,
+    }
     return render(request, 'mainapp/products.html', content)
 
 
 def contact(request):
+    contacts = Contacts.objects.all()
+    content = {
+        'contact_links': contact_links,
+        'products': products,
+        'contacts': contacts
+    }
     # with open(os.path.join(settings.BASE_DIR,'contacts.json'), encoding="utf-8") as json_contacts:
     #     json_data = json_contacts.read()
     #     locations = json.loads(json_data)
