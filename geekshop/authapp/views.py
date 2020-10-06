@@ -65,4 +65,4 @@ def edit(request):
         'edit_form': edit_form
     }
 
-    return render(request,'authapp/edit.html', content)
+    return render(request, 'authapp/edit.html', content)

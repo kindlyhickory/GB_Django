@@ -2,8 +2,9 @@ import json
 import os
 
 from django.conf import settings
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 
+from basketapp.models import Basket
 from mainapp.models import Product
 
 from mainapp.models import Contacts
@@ -31,12 +32,34 @@ def main(request):
 
 def products(request, category_pk=None):
     menu_links = ProductCategory.objects.all()
-    prods = Product.objects.all()[:3]
 
+    basket = Basket.objects.filter(user=request.user)
+
+    if category_pk is not None:
+        if category_pk == "0":
+            product_items = Product.objects.all()
+            category = {
+                'name': 'все'
+            }
+        else:
+            category = get_object_or_404(ProductCategory, pk=category_pk)
+            product_items = Product.objects.filter(category=category)
+
+        content = {
+            'contact_links': contact_links,
+            'menu_links': menu_links,
+            'category': category,
+            'products': product_items,
+            'basket': basket
+        }
+        return render(request, "mainapp/products_list.html", content)
+
+    prods = Product.objects.all()[:3]
     content = {
         'contact_links': contact_links,
         'menu_links': menu_links,
         'products': prods,
+        'basket': basket
     }
     return render(request, 'mainapp/products.html', content)
 
@@ -48,13 +71,5 @@ def contact(request):
         'products': products,
         'contacts': contacts
     }
-    # with open(os.path.join(settings.BASE_DIR,'contacts.json'), encoding="utf-8") as json_contacts:
-    #     json_data = json_contacts.read()
-    #     locations = json.loads(json_data)
-    #     for i in range(len(locations)):
-    #         Contacts.objects.create(city=locations[i]['city'],
-    #                                 email=locations[i]['email'],
-    #                                 phone_number=locations[i]['phone_number'],
-    #                                 post_address=locations[i]['post_address'])
 
     return render(request, 'mainapp/contact.html', content)

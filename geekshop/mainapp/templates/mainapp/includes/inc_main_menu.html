@@ -41,4 +41,6 @@
     {% endif %}
 </ul>
 <a href="#" class="search"></a>
-<a href="#" class="basket"></a>
+<a href="{% url "basket:basket" %}" class="basket">
+    {% if basket %} {{ basket|length }} {% endif %}
+</a>
