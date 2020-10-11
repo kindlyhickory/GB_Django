@@ -13,7 +13,6 @@ def login(request):
 
     next_url = request.GET['next'] if 'next' in request.GET.keys() else ''
 
-
     if request.method == "POST" and login_form.is_valid():
         username = request.POST['username']
         password = request.POST.get('password')
@@ -29,7 +28,7 @@ def login(request):
     content = {
         'title': title,
         'login_form': login_form,
-        'next' : next_url,
+        'next': next_url,
     }
 
     return render(request, 'authapp/login.html', content)
@@ -64,9 +63,10 @@ def edit(request):
     if request.method == "POST":
         edit_form = ShopUserEditForm(request.POST, request.FILES, instance=request.user)
         if edit_form.is_valid():
+            edit_form.save()
             return HttpResponseRedirect(reverse('auth:edit'))
     else:
-        edit_form = ShopUserEditForm
+        edit_form = ShopUserEditForm(instance=request.user)
     content = {
         'title': title,
         'edit_form': edit_form
