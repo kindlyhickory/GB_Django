@@ -1,14 +1,19 @@
-from django.http import HttpResponseRedirect
+from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import render, get_object_or_404
+from django.template.loader import render_to_string
 
 from basketapp.models import Basket
 from mainapp.models import Product
 
-
+@login_required
 def basket(request):
-    pass
+    content = {
+        'basket': Basket.objects.filter(user=request.user)
+    }
+    return render(request, 'basket.html', content)
 
-
+@login_required
 def basket_add(request, pk):
     product_item = get_object_or_404(Product, pk=pk)
 
@@ -22,6 +27,27 @@ def basket_add(request, pk):
 
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
+@login_required
+def basket_delete(request,pk):
+    basket_item = get_object_or_404(Basket, pk=pk)
+    basket_item.delete()
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
-def basket_delete(request, basket_pk):
-    pass
+@login_required
+def edit(request, pk, quantity):
+    if request.is_ajax():
+        quantity = int(quantity)
+        new_basket_item = Basket.objects.get(pk=int(pk))
+        if quantity > 0:
+            new_basket_item.quantity = quantity
+            new_basket_item.save()
+        else:
+            new_basket_item.delete()
+
+        basket_items = Basket.objects.filter(user = request.user)
+        content = {
+            'basket': basket_items
+        }
+        result = render_to_string('includes/inc_basket_list.html', content)
+
+        return JsonResponse({"result": result})

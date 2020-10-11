@@ -1,8 +1,10 @@
 {% extends 'authapp/base.html' %}
+{% load static %}
 
 {% block content %}
     <form action="{% url 'auth:login' %}" method = "post" class="form-horizontal">
         {% csrf_token %}
+        <input name = "next" type="hidden" value="{{ next }}">
         {{ login_form.as_p }}
         <br>
         <input type="submit" class="form-control" value="вход">
