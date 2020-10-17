@@ -38,7 +38,7 @@ class ShopUserRegisterForm(UserCreationForm):
 class ShopUserEditForm(UserChangeForm):
     class Meta:
         model = ShopUser
-        fields = ('first_name','email', 'avatar', 'age')
+        fields = ('username', 'first_name', 'email', 'avatar', 'age')
 
     def __init__(self, *args, **kwargs):
         super(ShopUserEditForm, self).__init__(*args, **kwargs)

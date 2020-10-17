@@ -52,8 +52,6 @@ def main(request):
 def products(request, category_pk=None):
     menu_links = ProductCategory.objects.all()
 
-    basket = Basket.objects.filter(user=request.user)
-
     if category_pk is not None:
         if category_pk == "0":
             product_items = Product.objects.all()
