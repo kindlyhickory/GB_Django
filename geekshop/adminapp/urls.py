@@ -7,21 +7,21 @@ import adminapp.views as adminapp
 app_name = 'adminapp'
 
 urlpatterns = [
-    path('users/create/', adminapp.user_create, name='user_create'),
-    path('users/read/', adminapp.users, name='users'),
-    path('users/update/<pk>/', adminapp.user_update, name='user_update'),
-    path('users/delete/<pk>/', adminapp.user_delete, name='user_delete'),
+    path('users/create/', adminapp.UsersCreateView.as_view(), name='user_create'),
+    path('users/read/', adminapp.UsersListView.as_view(), name='users'),
+    path('users/update/<pk>/', adminapp.UsersUpdateView.as_view(), name='user_update'),
+    path('users/delete/<pk>/', adminapp.UsersDeleteView.as_view(), name='user_delete'),
 
-    path('categories/create/', adminapp.category_create, name='category_create'),
-    path('categories/read/', adminapp.categories, name='categories'),
-    path('categories/update/<pk>/', adminapp.category_update, name='category_update'),
-    path('categories/delete/<pk>/', adminapp.category_delete, name='category_delete'),
+    path('categories/create/', adminapp.CategoriesCreateView.as_view(), name='category_create'),
+    path('categories/read/', adminapp.CategoriesListView.as_view(), name='categories'),
+    path('categories/update/<pk>/', adminapp.CategoriesUpdateView.as_view(), name='category_update'),
+    path('categories/delete/<pk>/', adminapp.CategoriesDeleteView.as_view(), name='category_delete'),
 
-    path('products/create/category/<pk>/', adminapp.product_create, name='product_create'),
-    path('products/read/category/<pk>/', adminapp.products, name='products'),
-    path('products/read/<pk>/', adminapp.product, name='product_read'),
-    path('products/update/<pk>/', adminapp.product_update, name='product_update'),
-    path('products/delete/<pk>/', adminapp.product_delete, name='product_delete'),
+    path('products/create/category/<pk>/', adminapp.ProductsCreateView.as_view(), name='product_create'),
+    path('products/read/category/<pk>/', adminapp.ProductsListView.as_view(), name='products'),
+    path('products/read/<pk>/', adminapp.ProductListView.as_view(), name='product_read'),
+    path('products/update/<pk>/', adminapp.ProductsEditView.as_view(), name='product_update'),
+    path('products/delete/<pk>/', adminapp.ProductsDeleteView.as_view(), name='product_delete'),
 
 
 ]
