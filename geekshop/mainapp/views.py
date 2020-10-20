@@ -21,13 +21,6 @@ contact_links = [
 ]
 
 
-def get_basket(user):
-    basket = []
-    if user.is_authenticated:
-        return Basket.objects.filter(user=user)
-    return []
-
-
 def get_hot_product():
     product_list = Product.objects.filter(is_active=True)
     return random.sample(list(product_list), 1)[0]
@@ -44,7 +37,6 @@ def main(request):
     content = {
         'contact_links': contact_links,
         'products': prods,
-        'basket': get_basket(request.user)
     }
     return render(request, 'mainapp/index.html', content)
 
@@ -77,7 +69,6 @@ def products(request, category_pk=None, page=1):
             'menu_links': menu_links,
             'category': category,
             'products': products_paginator,
-            'basket': get_basket(request.user)
         }
         return render(request, "mainapp/products_list.html", content)
 
@@ -88,7 +79,6 @@ def products(request, category_pk=None, page=1):
         'contact_links': contact_links,
         'menu_links': menu_links,
         'products': prods,
-        'basket': get_basket(request.user),
         'hot_product': hot_product,
         'same_products': same_products
     }
@@ -101,7 +91,6 @@ def contact(request):
         'contact_links': contact_links,
         'products': products,
         'contacts': contacts,
-        'basket': get_basket(request.user)
     }
 
     return render(request, 'mainapp/contact.html', content)
@@ -112,7 +101,6 @@ def product(request, pk):
     title = product_item.name
     content = {
         'product': product_item,
-        'basket': get_basket(request.user),
         'menu_links': ProductCategory.objects.all(),
         'title': title,
         'same_products': get_same_products(product_item)
