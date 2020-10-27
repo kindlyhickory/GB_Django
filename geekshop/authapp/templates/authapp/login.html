@@ -2,12 +2,22 @@
 {% load static %}
 
 {% block content %}
+    {% if from_register %}
+        Успешная регистрация. Проверьте почту!
+    {% endif %}
     <form action="{% url 'auth:login' %}" method = "post" class="form-horizontal">
         {% csrf_token %}
         <input name = "next" type="hidden" value="{{ next }}">
         {{ login_form.as_p }}
         <br>
         <input type="submit" class="form-control" value="вход">
-        <a href="{% url 'auth:register' %}" class="btn btn-link">регистрация</a>
     </form>
+    <button class="btn btn-round form-control">
+        <a href="{% url 'auth:register' %}" class="btn btn-link">регистрация</a>
+    </button>
+    <button class="btn btn-round form-control">
+        <a href="{% url 'social:begin' 'vk-oauth2' %}?next=/" class="btn btn-link">Вход через VK</a>
+    </button>
+
+
 {% endblock %}
