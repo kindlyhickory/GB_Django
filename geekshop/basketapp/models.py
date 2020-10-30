@@ -10,6 +10,11 @@ class Basket(models.Model):
     quantity = models.PositiveIntegerField(default=0, verbose_name='количество')
     add_datetime = models.DateField(auto_now_add=True)
 
+
+    @staticmethod
+    def get_items(user):
+        return Basket.objects.filter(user=user).order_by('product__category')
+
     @property
     def product_cost(self):
         return self.product.price * self.quantity
