@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="4410237e-d602-4bba-bc6c-295152747d2e" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../../basketapp/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../basketapp/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/../../db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../geekshop/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../geekshop/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../geekshop/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../geekshop/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../geekshop/vk.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../geekshop/vk.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../mainapp/templates/mainapp/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../mainapp/templates/mainapp/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../mainapp/templates/mainapp/includes/inc_main_menu.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../mainapp/templates/mainapp/includes/inc_main_menu.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../js/basket_scripts.js" beforeDir="false" afterPath="$PROJECT_DIR$/../js/basket_scripts.js" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+  </component>
+  <component name="JupyterTrust" id="6e828d08-f9ce-4840-a7cc-aecf979c9a89" />
+  <component name="ProjectId" id="1jT8evsSyJC0zzQSEbqM9ZctcMc" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="4410237e-d602-4bba-bc6c-295152747d2e" name="Default Changelist" comment="" />
+      <created>1603816820686</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1603816820686</updated>
+      <workItem from="1603816823862" duration="5000" />
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
