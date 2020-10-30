@@ -56,7 +56,10 @@ class Order(models.Model):
         self.save()
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> master
 class OrderItem(models.Model):
     order = models.ForeignKey(Order, related_name='orderitems', on_delete=models.CASCADE, verbose_name='Заказ')
     product = models.ForeignKey(Product, on_delete=models.CASCADE, verbose_name='Продукт')

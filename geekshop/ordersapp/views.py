@@ -100,16 +100,26 @@ class OrderItemDelete(DeleteView):
     model = Order
     success_url = reverse_lazy('order:orders_list')
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> master
 class OrderRead(DetailView):
     model = Order
 
 
+<<<<<<< HEAD
 def order_forming_complete(request, pk):
+=======
+def order_forming_complete(request,pk):
+>>>>>>> master
     order = get_object_or_404(Order, pk=pk)
     order.status = Order.SENT_TO_PROCEED
     order.save()
 
     return HttpResponseRedirect(reverse('order:orders_list'))
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> master
