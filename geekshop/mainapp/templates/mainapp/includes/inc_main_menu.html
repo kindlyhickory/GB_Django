@@ -24,17 +24,31 @@
     </li>
     <li>
     {% if user.is_authenticated %}
-        <a href="{% url "auth:edit" %}">{% if user.first_name %}
-            {{ user.first_name }}
-        {% else %}
-            Пользователь
-        {% endif %}
+        <li>
+            <div class="dropdown">
+                <a class="dropdown-toggle" href="" data-toggle="dropdown">
+                    {{ user.first_name|default:'Пользователь' }}
+                    <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a href="{% url 'auth:edit' %}">
+                            профиль
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'order:orders_list' %}">
+                            заказы
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+    {% endif %}
+    {% if user.is_superuser %}
+        <a href="{% url 'admin:users' %}">
+            админка
         </a>
-        {% if user.is_superuser %}
-            <a href="{% url 'admin:users' %}">
-                админка
-            </a>
-        {% endif %}
     {% endif %}
     </li>
     {% if user.is_authenticated %}
