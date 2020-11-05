@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, re_path
 import ordersapp.views as ordersapp
 
 app_name = 'ordersapp'
@@ -10,4 +10,6 @@ urlpatterns = [
     path('update/<pk>', ordersapp.OrderItemsUpdate.as_view(), name='order_update'),
     path('delete/<pk>', ordersapp.OrderItemDelete.as_view(), name='order_delete'),
     path('forming/<pk>', ordersapp.order_forming_complete, name='order_forming_complete'),
+
+    re_path(r'^product/(?P<pk>\d+)/price/$', ordersapp.get_product_price)
 ]

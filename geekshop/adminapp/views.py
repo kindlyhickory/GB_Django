@@ -9,6 +9,7 @@ from adminapp.forms import ShopUserAdminEditForm, ProductCategoryEditForm, Produ
 from authapp.forms import ShopUserRegisterForm
 from authapp.models import ShopUser
 from mainapp.models import ProductCategory, Product
+from ordersapp.models import Order
 
 
 class UsersListView(ListView):
@@ -219,3 +220,26 @@ class ProductsDeleteView(DeleteView):
         self.object.save()
 
         return HttpResponseRedirect(self.get_success_url())
+
+
+class OrdersListView(ListView):
+    model = Order
+    template_name = 'adminapp/orders_read.html'
+
+    def get_context_data(self, **kwargs):
+        context_data = super().get_context_data(**kwargs)
+        context_data['statuses'] = {
+            'FM': 'формируется',
+            'STP': 'отправлен в обработку',
+            'PD': 'оплачен',
+            'PRD': 'обрабатывается',
+            'RDY': 'готов к выдаче',
+        }
+        return context_data
+
+def order_change_status(request, status, pk):
+    order = get_object_or_404(Order, pk=pk)
+    order.status = status
+    order.save()
+
+    return HttpResponseRedirect(reverse('admin:orders_read'))

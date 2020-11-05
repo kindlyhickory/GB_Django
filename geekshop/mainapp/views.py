@@ -4,6 +4,7 @@ import random
 
 from django.conf import settings
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404
 
 from basketapp.models import Basket
@@ -107,3 +108,5 @@ def product(request, pk):
     }
 
     return render(request, 'mainapp/product.html', content)
+
+
