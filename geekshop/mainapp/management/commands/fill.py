@@ -7,7 +7,7 @@ from django.core.management import BaseCommand
 from authapp.models import ShopUser
 from mainapp.models import ProductCategory, Product, Contacts
 
-FILE_PATH = os.path.join(settings.BASE_DIR, 'mainapp\\json')
+FILE_PATH = os.path.join(settings.BASE_DIR, 'mainapp/json')
 
 
 def load_from_json(file_name):
