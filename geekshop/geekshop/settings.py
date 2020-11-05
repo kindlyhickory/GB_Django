@@ -27,7 +27,7 @@ DEBUG = False
 ALLOWED_HOSTS = ['*']
 
 # Application definition
- 
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -159,7 +159,7 @@ AUTHENTICATION_BACKENDS = (
     'social_core.backends.vk.VKOAuth2'
 )
 
-with open('geekshop/vk.json', 'r') as file:
+with open('vk.json', 'r') as file:
     VK = json.load(file)
 
 SOCIAL_AUTH_VK_OAUTH_IGNORE_DEFAULT_SCOPE = True
