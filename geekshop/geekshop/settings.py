@@ -22,7 +22,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '4lii#$+s2qqi$qz7)xx0jyw9my_^z#5%=e^_6^)omd)2(ui)y3'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -82,20 +82,20 @@ AUTH_USER_MODEL = 'authapp.ShopUser'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
+
 DATABASES = {
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.sqlite3',
-    #     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    # }
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'geekshop',
-        'USER': 'django',
-        'PASSWORD': 'geekbrains',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql',
+    #     'NAME': 'geekshop',
+    #     'USER': 'django',
+    #     'PASSWORD': 'geekbrains',
+    # }
 
 }
-
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
 
@@ -159,7 +159,7 @@ AUTHENTICATION_BACKENDS = (
     'social_core.backends.vk.VKOAuth2'
 )
 
-with open('vk.json', 'r') as file:
+with open('GB_django/geekshop/vk.json', 'r') as file:
     VK = json.load(file)
 
 SOCIAL_AUTH_VK_OAUTH_IGNORE_DEFAULT_SCOPE = True
