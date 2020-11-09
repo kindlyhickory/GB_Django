@@ -31,7 +31,7 @@ class Product(models.Model):
 class Contacts(models.Model):
     city = models.CharField(max_length=20, verbose_name='город')
     phone_number = models.CharField(max_length=15, verbose_name='телефон')
-    email = models.CharField(max_length=20, verbose_name='электронная почта')
+    email = models.CharField(max_length=40, verbose_name='электронная почта')
     post_address = models.CharField(max_length=128, verbose_name='почтовый адрес')
 
     def __str__(self):
