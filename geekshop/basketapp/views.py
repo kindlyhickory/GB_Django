@@ -7,12 +7,14 @@ from django.urls import reverse
 from basketapp.models import Basket
 from mainapp.models import Product
 
+
 @login_required
 def basket(request):
     content = {
         'basket': Basket.objects.filter(user=request.user)
     }
     return render(request, 'basket.html', content)
+
 
 @login_required
 def basket_add(request, pk):
@@ -31,11 +33,13 @@ def basket_add(request, pk):
 
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
+
 @login_required
-def basket_delete(request,pk):
+def basket_delete(request, pk):
     basket_item = get_object_or_404(Basket, pk=pk)
     basket_item.delete()
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
 
 @login_required
 def edit(request, pk, quantity):
@@ -48,7 +52,7 @@ def edit(request, pk, quantity):
         else:
             new_basket_item.delete()
 
-        basket_items = Basket.objects.filter(user = request.user)
+        basket_items = Basket.objects.filter(user=request.user)
         content = {
             'basket': basket_items
         }
