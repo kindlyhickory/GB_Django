@@ -3,6 +3,7 @@ import os
 import random
 
 from django.conf import settings
+from django.core.cache import cache
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404
@@ -20,6 +21,18 @@ contact_links = [
     {'href': 'contacts_google_plus', 'name': 'social3'},
     {'href': 'contacts_pinterest', 'name': 'social4'}
 ]
+
+
+def get_links_menu():
+    if settings.LOW_CACHE:
+        key = 'links_menu'
+        links_menu = cache.get(key)
+        if links_menu is None:
+            links_menu = ProductCategory.objects.filter(is_active=True)
+            cache.set(key, links_menu)
+        return links_menu
+    else:
+        return ProductCategory.objects.filter(is_active=True)
 
 
 def get_hot_product():
@@ -45,7 +58,7 @@ def main(request):
 # Create your views here.
 
 def products(request, category_pk=None, page=1):
-    menu_links = ProductCategory.objects.filter(is_active=True)
+    menu_links = get_links_menu()
 
     if category_pk is not None:
         if category_pk == '0':
@@ -102,11 +115,9 @@ def product(request, pk):
     title = product_item.name
     content = {
         'product': product_item,
-        'menu_links': ProductCategory.objects.all(),
+        'menu_links': get_links_menu(),
         'title': title,
         'same_products': get_same_products(product_item)
     }
 
     return render(request, 'mainapp/product.html', content)
-
-
