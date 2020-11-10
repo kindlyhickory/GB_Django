@@ -35,6 +35,17 @@ def get_links_menu():
         return ProductCategory.objects.filter(is_active=True)
 
 
+def get_category(pk):
+    if settings.LOW_CACHE:
+        key = f'category_{pk}'
+        category = cache.get(key)
+        if category is None:
+            category = get_object_or_404(ProductCategory, pk=pk)
+            cache.set(key, category)
+    else:
+        return get_object_or_404(ProductCategory, pk=pk)
+
+
 def get_hot_product():
     product_list = Product.objects.filter(is_active=True)
     return random.sample(list(product_list), 1)[0]
@@ -67,7 +78,7 @@ def products(request, category_pk=None, page=1):
                 'pk': 0
             }
         else:
-            category = get_object_or_404(ProductCategory, pk=category_pk)
+            category = get_category(category_pk)
             product_items = Product.objects.filter(category=category).filter(is_active=True)
 
         paginator = Paginator(product_items, 2)
