@@ -10,7 +10,7 @@ from mainapp.models import Product
 @login_required
 def basket(request):
     content = {
-        'basket': Basket.get_items_cached
+        'basket': Basket.objects.filter(user=request.user)
     }
     return render(request, 'basket.html', content)
 
