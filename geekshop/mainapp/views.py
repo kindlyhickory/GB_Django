@@ -42,6 +42,7 @@ def get_category(pk):
         if category is None:
             category = get_object_or_404(ProductCategory, pk=int(pk))
             cache.set(key, category)
+        return category
     else:
         return get_object_or_404(ProductCategory, pk=int(pk))
 
