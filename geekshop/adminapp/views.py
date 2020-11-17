@@ -1,4 +1,6 @@
 from django.contrib.auth.decorators import user_passes_test
+from django.contrib.sessions.backends import db
+from django.db.models import F
 from django.db.models.signals import pre_save
 from django.dispatch import receiver
 from django.http import HttpResponseRedirect, request
@@ -117,6 +119,14 @@ class CategoriesUpdateView(UpdateView):
         context_data = super().get_context_data(**kwargs)
         context_data['title'] = 'Редактирование категории'
         return context_data
+
+    def form_valid(self, form):
+        if 'discount' in form.cleaned_data:
+            discount = form.cleaned_data['discount']
+            if discount:
+                print(f'Применяется скидка {discount}% к товарной категории {self.object.name}')
+                self.object.product_set.update(price=F('price')*(1-discount/100))
+        return super().form_valid(form)
 
 
 class CategoriesDeleteView(DeleteView):
