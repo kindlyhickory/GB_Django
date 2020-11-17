@@ -1,4 +1,6 @@
 from django.contrib.auth.decorators import user_passes_test
+from django.db.models.signals import pre_save
+from django.dispatch import receiver
 from django.http import HttpResponseRedirect, request
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse, reverse_lazy
@@ -237,9 +239,19 @@ class OrdersListView(ListView):
         }
         return context_data
 
+
 def order_change_status(request, status, pk):
     order = get_object_or_404(Order, pk=pk)
     order.status = status
     order.save()
 
     return HttpResponseRedirect(reverse('admin:orders_read'))
+
+
+@receiver(pre_save, sender=ProductCategory)
+def product_is_active_update_productcategory_save(sender,instance, **kwargs):
+    if instance.pl:
+        if instance.is_active:
+            instance.product_set.update(is_active=True)
+        else:
+            instance.product_set.update(is_active=False)
