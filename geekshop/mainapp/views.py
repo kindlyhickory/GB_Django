@@ -50,7 +50,7 @@ def get_category(pk):
 
 def get_hot_product():
     product_list = Product.objects.filter(is_active=True)
-    return random.sample(list(product_list), 1)[0]
+    return random.choice(list(product_list))
 
 
 def get_same_products(hot_product):
