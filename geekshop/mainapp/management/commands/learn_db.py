@@ -14,16 +14,12 @@ action_1__discount = 0.3
 action_2__discount = 0.15
 action_expired__discount = 0.05
 
-action_1__condition = Q(order__updated__lte=F('order__created') + \
-                                            action_1__time_delta)
+action_1__condition = Q(order__update__lte=F('order__created') + action_1__time_delta)
 
-action_2__condition = Q(order__updated__gt=F('order__created') + \
-                                           action_1__time_delta) & \
-                      Q(order__updated__lte=F('order__created') + \
-                                            action_2__time_delta)
+action_2__condition = Q(order__update__gt=F('order__created') + action_1__time_delta) & \
+                      Q(order__update__lte=F('order__created') + action_2__time_delta)
 
-action_expired__condition = Q(order__updated__gt=F('order__created') + \
-                                                 action_2__time_delta)
+action_expired__condition = Q(order__update__gt=F('order__created') + action_2__time_delta)
 
 action_1__order = When(action_1__condition, then=ACTION_1)
 action_2__order = When(action_2__condition, then=ACTION_2)
