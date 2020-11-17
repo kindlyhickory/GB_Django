@@ -5,6 +5,7 @@ import random
 from django.conf import settings
 from django.core.cache import cache
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from django.db.models import Q
 from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404
 
@@ -53,8 +54,10 @@ def get_hot_product():
 
 
 def get_same_products(hot_product):
-    same_products = Product.objects.filter(category_id=hot_product.category_id).filter(is_active=True).exclude(
-        pk=hot_product.pk)[:3]
+    # same_products = Product.objects.filter(category_id=hot_product.category_id).filter(is_active=True).exclude(
+    #     pk=hot_product.pk)[:3]
+    same_products = Product.objects.filter(
+        (Q(category_id=hot_product.category_id) & Q(is_active=True)) & ~Q(pk=hot_product.pk))[:3]
     return same_products
 
 
