@@ -12,7 +12,7 @@ class ShopUser(AbstractUser):
     age = models.PositiveIntegerField(verbose_name='возраст', default=18)
     is_active = models.BooleanField(default=True)
 
-    activation_key = models.CharField(max_length=128, blank=True)
+    activation_key = models.CharField(blank=True)
     activation_key_expires = models.DateTimeField(default=(now() + timedelta(hours=48)))
 
     def is_activation_key_expired(self):
