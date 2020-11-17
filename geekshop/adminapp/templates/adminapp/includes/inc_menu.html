@@ -25,6 +25,6 @@
     </li>
     <li>
         <a href="{% url 'admin:orders_read' %}"
-        class={% if request.resolver_match.url_name == 'categories' %} active {% endif %}>Заказы</a>
+        class={% if request.resolver_match.url_name == 'orders' %} active {% endif %}>Заказы</a>
     </li>
 </ul>
