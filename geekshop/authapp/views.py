@@ -63,7 +63,7 @@ def login(request):
         'from_register': from_register,
     }
 
-    return render(request, 'mainapp/index.html', content)
+    return render(request, 'authapp/login.html', content)
 
 
 def logout(request):
