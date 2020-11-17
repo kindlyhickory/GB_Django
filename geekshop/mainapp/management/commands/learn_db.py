@@ -52,4 +52,4 @@ for orderitem in test_orderss:
     print(f'{orderitem.action_order:2}: заказ №{orderitem.pk:3}:\
            {orderitem.product.name:15}: скидка\
            {abs(orderitem.total_price):6.2f} руб. | \
-           {orderitem.order.updated - orderitem.order.created}')
+           {orderitem.order.update - orderitem.order.created}')
