@@ -57,7 +57,7 @@ def get_hot_product():
 
 
 def get_same_products(hot_product):
-    same_products = Product.objects.filter(category_id=hot_product.category_id).filter(is_active=True).exclude(
+    same_products = Product.objects.filter(category=hot_product.category).filter(is_active=True).exclude(
         pk=hot_product.pk)[:3]
     # same_products = Product.objects.filter(
     #     (Q(category_id=hot_product.category_id) & Q(is_active=True)) & ~Q(pk=hot_product.pk))[:3]
