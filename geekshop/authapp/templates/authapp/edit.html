@@ -2,7 +2,7 @@
 {% load static %}
 {% load authapp_tags %}
 {% block content %}
-    <div class ="new_user">
+    <div class ="new_category_form">
         <form action="{% url 'auth:edit' %}" method = "post" class="form-horizontal" enctype="multipart/form-data">
             {% csrf_token %}
             {{ edit_form.as_p }}
