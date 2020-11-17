@@ -23,15 +23,15 @@ def basket_add(request, pk):
         return HttpResponseRedirect(reverse('products:product', args=[pk]))
 
     product_item = get_object_or_404(Product, pk=pk)
+    old_basket_item = Basket.get_product(user=request.user, product=product_item)
 
-    basket_item = Basket.objects.filter(product_id=pk, user=request.user).first()
-
-    if not basket_item:
-        basket_item = Basket.objects.create(product=product_item, user=request.user)
-
-    # basket_item.quantity += 1
-    basket_item.quantity = F('quantity') + 1
-    # basket_item.save()
+    if old_basket_item:
+        old_basket_item[0].quantity = F('quantity') + 1
+        old_basket_item.save()
+    else:
+        new_basket_item = Basket(user=request.user, product=product_item)
+        new_basket_item.quantity += 1
+        new_basket_item.save()
 
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
